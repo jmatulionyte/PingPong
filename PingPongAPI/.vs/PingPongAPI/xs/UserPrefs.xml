@@ -1,0 +1,5 @@
+﻿<Properties StartupConfiguration="{AE23C983-39FF-43E1-ABE0-A6959DC382D1}|https">
+  <MonoDevelop.Ide.ItemProperties.PingpongWeb FirstBuild="True" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.PingPongAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>

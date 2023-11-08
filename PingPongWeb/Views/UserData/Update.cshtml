@@ -1,0 +1,46 @@
+﻿@using PingPongWeb.Models.Dto
+@model MatchUpdateDTO
+@{
+    ViewData["Title"] = "Edit Result";
+}
+<form method="post" asp-action="Update">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">
+                Edit Tournament
+            </h2>
+            <hr />
+        </div>
+        <input hidden asp-for="Id" />
+        <input hidden asp-for="GroupName" />
+        <input hidden asp-for="MatchType" />
+
+        <div class="mb-3">
+            <label asp-for="Player1"></label>
+            <input asp-for="Player1" class="form-control" readonly />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Player2"></label>
+            <input asp-for="Player2" class="form-control" readonly />
+        </div>
+        <div class="mb-3">
+            <label asp-for="ResultPlayer1"></label>
+            <input asp-for="ResultPlayer1" class="form-control" />
+            <span asp-validation-for="ResultPlayer1" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ResultPlayer2"></label>
+            <input asp-for="ResultPlayer2" class="form-control" />
+            <span asp-validation-for="ResultPlayer2" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+        <a asp-controller="UserData" asp-action="Index" class="btn btn-primary" style="width:150px">Back To Profile</a>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+        //validation for client side if empty fields
+    }
+}

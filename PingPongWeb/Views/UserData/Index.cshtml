@@ -1,0 +1,75 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpAcc
+@using Utility
+
+@using PingPongWeb.Models.Dto
+
+@model List<MatchDTO>
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+
+<div class="container p-3">
+    <div class="col-6">
+        <h2 class="text-primary">
+            User Profile
+        </h2>
+    </div>
+    <div>
+        @if (Model.Count != 0)
+        {
+            <h5>
+                Group Plays
+            </h5>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Player1
+                            </td>
+                            <td>
+                                @item.ResultPlayer1 : @item.ResultPlayer2
+                            </td>
+                            <td>
+                                @item.Player2
+                            </td>
+                            <td width="20%">
+                                @if (httpAcc.HttpContext.Session.GetString(SpecialDetails.SessionToken) != null)
+                                {
+                                    <div class="w-75 btn-group" role="group">
+                                        <a class="btn btn-primary mx-2" asp-controller="UserData" asp-action="Update" asp-route-id="@item.Id">Change Result</a>
+                                    </div>
+                                }
+
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+
+
+</div>

@@ -1,0 +1,36 @@
+﻿
+
+@using PingPongWeb.Models
+
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<head>
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+</head>
+
+<div class="group groupList text-muted">
+    <p>Group A</p>
+    <partial name="_TableGroupPartial" model="Model.groupViewModel.groupA" />
+    <br />
+    <p>Group B</p>
+    <partial name="_TableGroupPartial" model="Model.groupViewModel.groupB" />
+    <br />
+    <p>Group C</p>
+    <partial name="_TableGroupPartial" model="Model.groupViewModel.groupC" />
+
+</div>
+
+<div class="group groupMatch text-muted">
+    <p>Group A</p>
+    <partial name="_TableGroupMatchesPartial" model="Model.groupMatchViewModel.groupA" />
+    <br />
+    <p>Group B</p>
+    <partial name="_TableGroupMatchesPartial" model="Model.groupMatchViewModel.groupB" />
+    <br />
+    <p>Group C</p>
+    <partial name="_TableGroupMatchesPartial" model="Model.groupMatchViewModel.groupC" />
+
+</div>
+

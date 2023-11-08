@@ -1,0 +1,68 @@
+﻿<Properties StartupConfiguration="Multiple Projects">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/bg0513/Documents/personal-project/PingpongWeb/Controllers/PlayerController.cs" line="43" column="1" />
+      <Breakpoint file="/Users/bg0513/Documents/personal-project/PingpongWeb/Controllers/PlayerController.cs" line="41" column="1" />
+      <Breakpoint file="/Users/bg0513/Documents/personal-project/PingpongWeb/Controllers/PlayerController.cs" line="40" column="1" />
+      <Breakpoint file="/Users/bg0513/Documents/personal-project/PingpongWeb/Services/PlayerService.cs" line="45" column="1" />
+      <Breakpoint file="/Users/bg0513/Documents/personal-project/PingpongWeb/Controllers/PlayerController.cs" line="46" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
+      <Items>
+        <StartupItem ItemId="{AE23C983-39FF-43E1-ABE0-A6959DC382D1}" ItemName="PingPongAPI" ConfigurationId="https" />
+        <StartupItem ItemId="{50E28E31-16DA-4FA8-AC28-8EB3558343BA}" ItemName="PingPongWeb" ConfigurationId="https" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.PingPongWeb PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../PingpongWeb/Views/Shared/_Layout.cshtml">
+    <Files>
+      <File FileName="../PingpongWeb/Controllers/PlayerController.cs" Line="46" Column="1" />
+      <File FileName="../PingpongWeb/Views/Player/Index.cshtml" Line="1" Column="1" />
+      <File FileName="../PingpongWeb/Views/Shared/_Layout.cshtml.css" Line="1" Column="1" />
+      <File FileName="../PingpongWeb/Views/Shared/_Layout.cshtml" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PingPong">
+            <Node name="PingPongAPI">
+              <Node name="Data" expanded="True" />
+              <Node name="Migrations" expanded="True">
+                <Node name="20231101170126_firstMigr.cs" expanded="True" />
+              </Node>
+              <Node name="Models" expanded="True">
+                <Node name="Dto" expanded="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+            <Node name="PingPongWeb" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Dto" expanded="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="IServices" expanded="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Player" expanded="True" />
+                <Node name="Shared" expanded="True">
+                  <Node name="_Layout.cshtml" expanded="True" selected="True" />
+                </Node>
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+            <Node name="Utility" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.PingPongAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>

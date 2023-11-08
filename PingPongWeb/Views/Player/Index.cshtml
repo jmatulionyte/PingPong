@@ -1,0 +1,90 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpAcc
+@using Utility
+
+@using PingPongWeb.Models.Dto
+
+@model IEnumerable<PlayerDTO>
+@{
+    ViewData["Title"] = "Player";
+}
+
+<div class="container p-3">
+    <div class="row pt-2">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Players list
+            </h2>
+        </div>
+        @if (httpAcc.HttpContext.Session.GetString(SpecialDetails.SessionToken) != null)
+        {
+            <div class="col-6 text-end">
+                <a class="btn btn-primary" asp-controller="Dashboard" asp-action="Index">
+                    Start Tournament
+                </a>
+                <a class="btn btn-primary" asp-controller="Dashboard" asp-action="Index">
+                    End Tournament
+                </a>
+            </div>
+        }
+
+    </div>
+
+    <table class="table table-dark" style="background-color: black">
+        <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Enrolled
+                    @*@Html.ActionLink("Enrolled To Tournament", "Index", new { sortOrder = ViewBag.EnrollmentSortParm })*@
+                </th>
+                <th>
+                    Points
+                    @*@Html.ActionLink("Rating", "Index", new { sortOrder = ViewBag.RatingSortParm })*@
+                </th>
+                <th>
+                    Group
+                    @*@Html.ActionLink("Group", "Index", new { sortOrder = ViewBag.GroupSortParm })*@
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.FirstName
+                    </td>
+                    <td>
+                        @item.LastName
+                    </td>
+                    <td>
+                        @item.EnrolledToTournament
+                    </td>
+                    <td>
+                        @item.Points
+                    </td>
+                    <td>
+                        @item.GroupName
+                    </td>
+                    <td width="20%">
+                        @if (httpAcc.HttpContext.Session.GetString(SpecialDetails.SessionToken) != null)
+                        {
+                            <div class="w-75 btn-group" role="group">
+                                <a class="btn btn-primary mx-2" asp-controller="Player" asp-action="Update" asp-route-id="@item.Id">Change Enrollment</a>
+                            </div>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

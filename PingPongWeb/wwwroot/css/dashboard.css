@@ -1,0 +1,14 @@
+﻿div.group {
+    margin: 4px, 4px;
+    padding: 20px;
+    height: 80%;
+    float: left;
+}
+
+div.groupList {
+    width: 250px;
+}
+
+div.groupMatch {
+    width: 350px;
+}
