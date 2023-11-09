@@ -14,6 +14,14 @@ namespace PingPongAPI.Models
             MatchType = matchType;
         }
 
+        public Match(string player1, string player2, int playoffMatchNr, string matchType)
+        {
+            Player1 = player1;
+            Player2 = player2;
+            PlayoffMatchNr = playoffMatchNr;
+            MatchType = matchType;
+        }
+
         public Match()
         {
         }
@@ -40,6 +48,10 @@ namespace PingPongAPI.Models
         public string GroupName { get; set; }
 
         public string MatchType { get; set; }
-    }
+
+        public int PlayoffMatchNr { get; set; }
+
+        public string Winner { get; set; }
+    } 
 }
 

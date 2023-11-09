@@ -25,6 +25,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.13" />
+    <PackageReference Include="EntityFrameworkCore.Triggered" Version="3.2.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,7 @@
     <None Remove="Repository\" />
     <None Remove="Repository\IRepository\" />
     <None Remove="Models\Dto\" />
+    <None Remove="Repository\Triggers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -40,5 +42,11 @@
     <Folder Include="Repository\" />
     <Folder Include="Repository\IRepository\" />
     <Folder Include="Models\Dto\" />
+    <Folder Include="Repository\Triggers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

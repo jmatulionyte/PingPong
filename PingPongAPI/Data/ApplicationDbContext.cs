@@ -17,10 +17,26 @@ namespace PingPongAPI.Data
         public DbSet<Match> Matches { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+        //protected override void OnModelUpdating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Match>()
+        //        .AfterInsert(trigger => trigger.Action(triggerAction => triggerAction
+        //            .Upsert(transaction => new { transaction.UserId },
+        //                insertedTransaction => new UserBalance { UserId = transaction.UserId, Balance = insertedTransaction.Sum },
+        //                    (insertedTransaction, oldBalance) => new UserBalance { Balance = oldBalance.Balance + insertedTransaction.Sum })));
+        //}
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
-        //    base.OnModelCreating(modelBuilder);
+        //    modelBuilder.Entity<Match>(entry =>
+        //    {
+        //        entry.ToTable(tb => tb.HasTrigger("SetMatchWins"));
+        //    });
         //}
+
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            configurationBuilder.Conventions.Add(_ => new BlankTriggerAddingConvention());
+        }
     }
 }
 

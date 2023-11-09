@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using PingPongAPI.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,9 +20,14 @@ var connectionString = builder.Configuration.GetConnectionString("TestDBConnecti
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
 {
     option.UseSqlServer(connectionString);
+    option.UseTriggers(triggerOptions => {
+        triggerOptions.AddTrigger<SetMatchWins>();
+        triggerOptions.AddTrigger<SetPlayersGroupWinsPositions>();
+    });
 });
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
 
 builder.Services.AddResponseCaching();
 
@@ -99,6 +105,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 builder.Services.AddScoped<IMatchRepository, MatchRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
 //mapper for model-dto mapping
 builder.Services.AddAutoMapper(typeof(MappingConfig));

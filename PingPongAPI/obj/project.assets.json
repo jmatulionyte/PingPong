@@ -75,6 +75,36 @@
           }
         }
       },
+      "EntityFrameworkCore.Triggered/3.2.2": {
+        "type": "package",
+        "dependencies": {
+          "EntityFrameworkCore.Triggered.Abstractions": "3.2.2",
+          "Microsoft.EntityFrameworkCore": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/EntityFrameworkCore.Triggered.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/EntityFrameworkCore.Triggered.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "EntityFrameworkCore.Triggered.Abstractions/3.2.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/EntityFrameworkCore.Triggered.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/EntityFrameworkCore.Triggered.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -1388,6 +1418,16 @@
             "rid": "win"
           }
         }
+      },
+      "Utility/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Utility.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Utility.dll": {}
+        }
       }
     }
   },
@@ -1457,6 +1497,32 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "EntityFrameworkCore.Triggered/3.2.2": {
+      "sha512": "TtbhqPZSiGW74EXgmCL9qoaBAfDkZdTc89T2/OCZ13JbsTOhzKkUF1iqUWIuPCrIgwDhsiRD/pe+AZApfYJQPw==",
+      "type": "package",
+      "path": "entityframeworkcore.triggered/3.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "entityframeworkcore.triggered.3.2.2.nupkg.sha512",
+        "entityframeworkcore.triggered.nuspec",
+        "lib/net6.0/EntityFrameworkCore.Triggered.dll",
+        "lib/net6.0/EntityFrameworkCore.Triggered.xml"
+      ]
+    },
+    "EntityFrameworkCore.Triggered.Abstractions/3.2.2": {
+      "sha512": "gMBLJlBeW5X4prp6San9Qo8sSxvLd3KJUOfIQxmLtOpNWVmNdfVgDR75gYTqblejg/Ci8eDqy0bUucxUcYyukA==",
+      "type": "package",
+      "path": "entityframeworkcore.triggered.abstractions/3.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "entityframeworkcore.triggered.abstractions.3.2.2.nupkg.sha512",
+        "entityframeworkcore.triggered.abstractions.nuspec",
+        "lib/net6.0/EntityFrameworkCore.Triggered.Abstractions.dll",
+        "lib/net6.0/EntityFrameworkCore.Triggered.Abstractions.xml"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -3827,12 +3893,18 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Utility/1.0.0": {
+      "type": "project",
+      "path": "../Utility/Utility.csproj",
+      "msbuildProject": "../Utility/Utility.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
+      "EntityFrameworkCore.Triggered >= 3.2.2",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.13",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.13",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 7.0.13",
@@ -3843,7 +3915,8 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.13",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.13",
       "Newtonsoft.Json >= 13.0.3",
-      "Swashbuckle.AspNetCore >= 6.5.0"
+      "Swashbuckle.AspNetCore >= 6.5.0",
+      "Utility >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3871,7 +3944,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/bg0513/Documents/personal-project/FinalPingPong/Utility/Utility.csproj": {
+              "projectPath": "/Users/bg0513/Documents/personal-project/FinalPingPong/Utility/Utility.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -3891,6 +3968,10 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[12.0.1, )"
+          },
+          "EntityFrameworkCore.Triggered": {
+            "target": "Package",
+            "version": "[3.2.2, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",

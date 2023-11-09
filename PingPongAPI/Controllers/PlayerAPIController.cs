@@ -179,22 +179,24 @@ public class PlayerAPIController : ControllerBase
         return _response;
     }
 
-    [HttpPut("{id:int}", Name = "UpdatePlayer")]
+    [HttpPut("{id:int}", Name = "UpdatePlayers")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "admin")]
-    public async Task<ActionResult<APIResponse>> UpdatePlayer([FromBody] PlayerUpdateDTO updateDTO)
+    public async Task<ActionResult<APIResponse>> UpdatePlayers([FromBody] PlayerUpdateDTO? updateDTO)
     {
         try
         {
             if (updateDTO == null)
             {
-                _response.StatusCode = HttpStatusCode.BadGateway;
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add("Player with this id is not existant");
-                return BadRequest(_response);
+                //update all players data - wins and positions
+                //await _dbPlayer.UpdateAllPlayersGroupPositionsWins();
+                _response.StatusCode = HttpStatusCode.NoContent;
+                _response.IsSuccess = true;
+                return Ok(_response);
             }
 
+            //update specific player
             Player model = _mapper.Map<Player>(updateDTO);
             await _dbPlayer.UpdateAsync(model);
 

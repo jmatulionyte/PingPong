@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using System.Numerics;
 
+
 namespace PingPongAPI.Controllers;
 
 [ApiController]
@@ -98,20 +99,34 @@ public class MatchAPIController : ControllerBase
         return _response;
     }
 
-    [HttpPost]
+    [HttpPost(Name = "CreateMatches")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     //[Authorize(Roles = "admin")]
-    public async Task<ActionResult<APIResponse>> CreateMatches()
+    public async Task<ActionResult<APIResponse>> CreateMatches([FromBody] MatchCreateDTO? craeteDTO)
     {
         try
         {
+            //create single match - for playoffs
+            if(craeteDTO != null)
+            {
+                //map values to original model from dto
+                Match match = _mapper.Map<Match>(craeteDTO);
+
+                await _dbMatch.CreateAsync(match);
+
+                _response.Result = _mapper.Map<PlayerDTO>(match);
+                _response.StatusCode = HttpStatusCode.Created;
+                //show route where can fetch resource
+                return CreatedAtRoute("GetPlayer", new { id = match.Id }, _response);
+            }
+            //create all matches for group plays
             List<Match> matchList = await _dbMatch.GetAllAsync();
-            if (matchList.Count() == 0)
+            if (matchList.Count == 0)
             {
                 //get Player objects with enrollment 'yes'
                 List<Player> enrolledPlayerListInGroup = await _dbPlayer
-                    .GetAllAsync(u =>u.EnrolledToTournament == "Yes");
+                    .GetAllAsync(u => u.EnrolledToTournament == "Yes");
                 //create matches and save to DB
                 await _dbMatch.CreateMatchesForGroups(enrolledPlayerListInGroup);
                 //get created matches
@@ -121,10 +136,9 @@ public class MatchAPIController : ControllerBase
                 return (_response);
             }
 
-            _response.StatusCode = HttpStatusCode.BadRequest;
-            _response.IsSuccess = false;
-            _response.ErrorMessages.Add("Group matches are already created");
-            return BadRequest(_response); //TODO NOW RETURNS 200, SHoULD BE 201
+            _response.StatusCode = HttpStatusCode.OK;
+            _response.IsSuccess = true;
+            return Ok(_response); //TODO NOW RETURNS 200, SHoULD BE 201
         }
         catch (Exception ex)
         {
@@ -138,7 +152,6 @@ public class MatchAPIController : ControllerBase
     [HttpPut("{id:int}", Name = "UpdateMatch")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [Authorize(Roles = "admin")]
     public async Task<ActionResult<APIResponse>> UpdateMatch([FromBody] MatchUpdateDTO updateDTO)
     {
         try

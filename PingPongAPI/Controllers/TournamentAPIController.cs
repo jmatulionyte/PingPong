@@ -29,24 +29,24 @@ public class TournamentAPIController : ControllerBase
     }
 
     //get tournament data, post data, update data, deleyte?
-    [HttpPost] 
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    //UPDATE
-    public async Task<ActionResult<APIResponse>> xxx()
-    {
-        try
-        {
+    //[HttpPost] 
+    //[ProducesResponseType(StatusCodes.Status200OK)]
+    ////UPDATE
+    //public async Task<ActionResult<APIResponse>> xxx()
+    //{
+    //    try
+    //    {
 
-            return Ok();
-        }
-        catch (Exception ex)
-        {
-            _response.IsSuccess = false;
-            _response.ErrorMessages
-                 = new List<string>() { ex.ToString() };
-        }
-        return _response;
-    }
+    //        return Ok();
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        _response.IsSuccess = false;
+    //        _response.ErrorMessages
+    //             = new List<string>() { ex.ToString() };
+    //    }
+    //    return _response;
+    //}
 
 
 }

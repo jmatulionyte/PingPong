@@ -21,6 +21,8 @@ namespace PingPongAPI.Models.Dto
         public string GroupName { get; set; }
 
         public string MatchType { get; set; }
+
+        public string Winner { get; set; }
     }
 }
 

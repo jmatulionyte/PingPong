@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace PingPongWeb.Models.Dto
+namespace PingPongAPI.Models.Dto
 {
     public class MatchCreateDTO
 	{
@@ -24,6 +24,8 @@ namespace PingPongWeb.Models.Dto
 
         [Required]
         public int PlayoffMatchNr { get; set; } = 0;
+
+        public string Winner { get; set; }
     }
 }
 
