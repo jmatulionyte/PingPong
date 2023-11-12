@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Edit Result";
 }
+
 <form method="post" asp-action="Update">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
@@ -14,14 +15,18 @@
         <input hidden asp-for="Id" />
         <input hidden asp-for="GroupName" />
         <input hidden asp-for="MatchType" />
+        <input hidden asp-for="Winner" />
+
 
         <div class="mb-3">
             <label asp-for="Player1"></label>
             <input asp-for="Player1" class="form-control" readonly />
+            <span asp-validation-for="Player1" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Player2"></label>
             <input asp-for="Player2" class="form-control" readonly />
+            <span asp-validation-for="Player2" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="ResultPlayer1"></label>
@@ -32,6 +37,7 @@
             <label asp-for="ResultPlayer2"></label>
             <input asp-for="ResultPlayer2" class="form-control" />
             <span asp-validation-for="ResultPlayer2" class="text-danger"></span>
+            @Html.ValidationMessage("CustomError")
         </div>
         <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
         <a asp-controller="UserData" asp-action="Index" class="btn btn-primary" style="width:150px">Back To Profile</a>

@@ -21,6 +21,7 @@
     <None Remove="Views\Dashboard\" />
     <None Remove="Views\Auth\" />
     <None Remove="Views\UserData\" />
+    <None Remove="Models\ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -30,6 +31,7 @@
     <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\Auth\" />
     <Folder Include="Views\UserData\" />
+    <Folder Include="Models\ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utility\Utility.csproj">

@@ -99,11 +99,11 @@ public class MatchAPIController : ControllerBase
         return _response;
     }
 
-    [HttpPost(Name = "CreateMatches")]
+    [HttpPost(Name = "CreateMatch")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     //[Authorize(Roles = "admin")]
-    public async Task<ActionResult<APIResponse>> CreateMatches([FromBody] MatchCreateDTO? craeteDTO)
+    public async Task<ActionResult<APIResponse>> CreateMatch([FromBody] MatchCreateDTO craeteDTO)
     {
         try
         {
@@ -120,22 +120,6 @@ public class MatchAPIController : ControllerBase
                 //show route where can fetch resource
                 return CreatedAtRoute("GetPlayer", new { id = match.Id }, _response);
             }
-            //create all matches for group plays
-            List<Match> matchList = await _dbMatch.GetAllAsync();
-            if (matchList.Count == 0)
-            {
-                //get Player objects with enrollment 'yes'
-                List<Player> enrolledPlayerListInGroup = await _dbPlayer
-                    .GetAllAsync(u => u.EnrolledToTournament == "Yes");
-                //create matches and save to DB
-                await _dbMatch.CreateMatchesForGroups(enrolledPlayerListInGroup);
-                //get created matches
-                matchList = await _dbMatch.GetAllAsync();
-                _response.Result = _mapper.Map<List<MatchDTO>>(matchList);
-                _response.StatusCode = HttpStatusCode.Created;
-                return (_response);
-            }
-
             _response.StatusCode = HttpStatusCode.OK;
             _response.IsSuccess = true;
             return Ok(_response); //TODO NOW RETURNS 200, SHoULD BE 201
@@ -167,6 +151,12 @@ public class MatchAPIController : ControllerBase
             Match model = _mapper.Map<Match>(updateDTO);
             await _dbMatch.UpdateAsync(model);
 
+            //can after api provides results, executes some kind of calculations???
+
+            //update player wins and positioning in group
+            await _dbPlayer.UpdateAllPlayersGroupPositionsWins();
+            //update playoff matches - referenncing positioning in group
+            await _dbMatch.CreateOrUpdateMatchesForPlayoffs();
             _response.StatusCode = HttpStatusCode.NoContent;
             _response.IsSuccess = true;
             return Ok(_response);

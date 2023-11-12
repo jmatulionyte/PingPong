@@ -1,5 +1,6 @@
-﻿
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpAcc
 
+@using Utility
 @using PingPongWeb.Models
 
 @model DashboardViewModel
@@ -10,27 +11,73 @@
     <link rel="stylesheet" href="~/css/dashboard.css" />
 </head>
 
-<div class="group groupList text-muted">
-    <p>Group A</p>
-    <partial name="_TableGroupPartial" model="Model.groupViewModel.groupA" />
-    <br />
-    <p>Group B</p>
-    <partial name="_TableGroupPartial" model="Model.groupViewModel.groupB" />
-    <br />
-    <p>Group C</p>
-    <partial name="_TableGroupPartial" model="Model.groupViewModel.groupC" />
+<div class="dashboard">
+    <div class="row pt-5">
+        @if (httpAcc.HttpContext.Session.GetString(SpecialDetails.SessionToken) != null)
+        {
+            @if (Model.tournamentStarted)
+            {
+                <div class="col-6 text-end">
+                    <button class="btn btn-secondary" style="background-color: #D0D0D0 " disabled>
+                        Start Tournament
+                    </button>
+                    <a class="btn btn-primary" asp-controller="Dashboard" asp-action="EndTournament">
+                        End Tournament
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="col-6 text-end">
+                    <a class="btn btn-primary" asp-controller="Dashboard" asp-action="Index" asp-route-createTournament=true>
+                        Start Tournament
+                    </a>
+                    <button class="btn btn-secondary" style="background-color: #D0D0D0 " disabled>
+                        End Tournament
+                    </button>
+                </div>
+            }
+
+        }
+    </div>
+
+    <div class="group groupList text-muted">
+        @if (Model.groupViewModel != null)
+        {
+            <p>Group A</p>
+            <partial name="_TableGroupPartial" model="Model.groupViewModel.GroupA" />
+            <br />
+            <p>Group B</p>
+            <partial name="_TableGroupPartial" model="Model.groupViewModel.GroupB" />
+            <br />
+            <p>Group C</p>
+            <partial name="_TableGroupPartial" model="Model.groupViewModel.GroupC" />
+
+        }
+
+    </div>
+
+    <div class="group groupMatch text-muted">
+        @if (Model.groupMatchViewModel != null)
+        {
+            <p>Group A</p>
+            <partial name="_TableGroupMatchesPartial" model="Model.groupMatchViewModel.GroupA" />
+            <br />
+            <p>Group B</p>
+            <partial name="_TableGroupMatchesPartial" model="Model.groupMatchViewModel.GroupB" />
+            <br />
+            <p>Group C</p>
+            <partial name="_TableGroupMatchesPartial" model="Model.groupMatchViewModel.GroupC" />
+
+        }
+
+    </div>
+
+    <div class="playoffGraph">
+        @if (Model.groupMatchViewModel != null)
+        {
+            <partial name="_PlayoffGraph" model="Model.playoffGraphViewModel" />
+        }
+    </div>
 
 </div>
-
-<div class="group groupMatch text-muted">
-    <p>Group A</p>
-    <partial name="_TableGroupMatchesPartial" model="Model.groupMatchViewModel.groupA" />
-    <br />
-    <p>Group B</p>
-    <partial name="_TableGroupMatchesPartial" model="Model.groupMatchViewModel.groupB" />
-    <br />
-    <p>Group C</p>
-    <partial name="_TableGroupMatchesPartial" model="Model.groupMatchViewModel.groupC" />
-
-</div>
-

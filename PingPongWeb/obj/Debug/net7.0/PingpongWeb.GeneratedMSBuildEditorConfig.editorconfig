@@ -44,6 +44,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGxheWVyL1VwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/bg0513/Documents/personal-project/FinalPingPong/PingPongWeb/Views/Shared/_PlayoffGraph.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QbGF5b2ZmR3JhcGguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/bg0513/Documents/personal-project/FinalPingPong/PingPongWeb/Views/Shared/_PlayoffGraphRoundPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QbGF5b2ZmR3JhcGhSb3VuZFBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/bg0513/Documents/personal-project/FinalPingPong/PingPongWeb/Views/Shared/_TableGroupMatchesPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19UYWJsZUdyb3VwTWF0Y2hlc1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

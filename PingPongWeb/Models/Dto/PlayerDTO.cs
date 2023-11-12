@@ -17,6 +17,10 @@ namespace PingPongWeb.Models.Dto
         public int Points { get; set; }
 
         public string GroupName { get; set; }
+
+        public int GroupPosition { get; set; } = 0;
+
+        public int GroupWins { get; set; } = 0;
     }
 }
 

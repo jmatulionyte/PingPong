@@ -10,10 +10,9 @@ namespace PingPongWeb.Services
     public class UserDataService : IUserDataService
     {
         private readonly IPlayerService _playerService;
-        private readonly IMatchService _matchService;
+        private readonly IGroupMatchService _matchService;
 
-        public UserDataService(IPlayerService playerService, IMatchService matchService,
-            IHttpClientFactory clientFactory)
+        public UserDataService(IPlayerService playerService, IGroupMatchService matchService)
         {
             _playerService = playerService;
             _matchService = matchService;
@@ -21,7 +20,7 @@ namespace PingPongWeb.Services
 
         public async Task<List<MatchDTO>> GetUserMatches(string fullName)
         {
-            List<MatchDTO> matchesForUser = await _matchService.GetGroupMathesForUser(fullName);
+            List<MatchDTO> matchesForUser = await _matchService.GetGroupMatchesForUser(fullName);
             if(matchesForUser.Count() != 0)
             {
                 return matchesForUser;

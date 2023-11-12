@@ -1,7 +1,6 @@
-﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpAcc
+﻿@using PingPongWeb.Models.Dto
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpAcc
 @using Utility
-
-@using PingPongWeb.Models.Dto
 
 @model IEnumerable<PlayerDTO>
 @{
@@ -15,17 +14,7 @@
                 Players list
             </h2>
         </div>
-        @if (httpAcc.HttpContext.Session.GetString(SpecialDetails.SessionToken) != null)
-        {
-            <div class="col-6 text-end">
-                <a class="btn btn-primary" asp-controller="Dashboard" asp-action="Index">
-                    Start Tournament
-                </a>
-                <a class="btn btn-primary" asp-controller="Dashboard" asp-action="Index">
-                    End Tournament
-                </a>
-            </div>
-        }
+
 
     </div>
 

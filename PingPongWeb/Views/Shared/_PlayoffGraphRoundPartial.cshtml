@@ -1,0 +1,38 @@
+﻿@using PingPongWeb.Models.Dto
+@model MatchDTO
+
+<head>
+    <link rel="stylesheet" href="~/css/tournamentBrackets.css" />
+</head>
+
+@if (Model != null)
+{
+    int[] @matchesToManipulate = { 9, 10, 11, 12 };
+
+    <li class="@ViewData["SpacerType"].ToString()"><p class="matchName">Match @Model.PlayoffMatchNr </p></li>
+    @if (matchesToManipulate.Contains(@Model.PlayoffMatchNr))
+    {
+        string tempFullName = @Model.Player1;
+        @Model.Player1 = @Model.Player2;
+        @Model.Player2 = tempFullName;
+    }
+
+    @if (@Model.ResultPlayer1 > @Model.ResultPlayer2)
+    {
+        <li class="game game-top winner" style="padding-left: 5px">@Model.Player1<span>@Model.ResultPlayer1</span></li>
+        <li class="game game-spacer">&nbsp;</li>
+        <li class="game game-bottom" style="padding-left: 5px">@Model.Player2<span>@Model.ResultPlayer2</span></li>
+    }
+    else if (@Model.ResultPlayer1 < @Model.ResultPlayer2)
+    {
+        <li class="game game-top" style="padding-left: 5px">@Model.Player1<span>@Model.ResultPlayer1</span></li>
+        <li class="game game-spacer">&nbsp;</li>
+        <li class="game game-bottom winner" style="padding-left: 5px">@Model.Player2<span>@Model.ResultPlayer2</span></li>
+    }
+    else
+    {
+        <li class="game game-top" style="padding-left: 5px">@Model.Player1<span>@Model.ResultPlayer1</span></li>
+        <li class="game game-spacer">&nbsp;</li>
+        <li class="game game-bottom" style="padding-left: 5px">@Model.Player2<span>@Model.ResultPlayer2</span></li>
+    }
+}

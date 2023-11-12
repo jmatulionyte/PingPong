@@ -1,14 +1,36 @@
-﻿div.group {
+﻿div.dashboard {
+    width: 500px;
+    height: 100px;
+    white-space: nowrap;
+    position: relative;
+    overflow-x: scroll;
+/*    overflow-y: hidden;*/
+    -webkit-overflow-scrolling: touch;
+}
+
+div.group {
     margin: 4px, 4px;
     padding: 20px;
     height: 80%;
-    float: left;
+    /*    float: left;*/
+    display: inline-block;
+    float: none;
 }
 
 div.groupList {
     width: 250px;
+    display: inline-block;
+    float: none;
 }
 
 div.groupMatch {
-    width: 350px;
+    width: 400px;
+    display: inline-block;
+    float: none;
+}
+
+div.playoffGraph {
+    padding: 20px;
+    display: inline-block;
+    float: none;
 }

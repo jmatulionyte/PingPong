@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
+      "Id": "/Users/bg0513/Documents/personal-project/FinalPingPong/PingPongWeb/wwwroot/css/tournamentBrackets.css",
+      "PackagePath": "staticwebassets/css/tournamentBrackets.css"
+    },
+    {
       "Id": "/Users/bg0513/Documents/personal-project/FinalPingPong/PingPongWeb/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
     },

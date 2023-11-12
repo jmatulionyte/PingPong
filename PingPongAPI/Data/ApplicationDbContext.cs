@@ -16,6 +16,7 @@ namespace PingPongAPI.Data
         public DbSet<Player> Players { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Tournament> Tournaments { get; set; }
 
         //protected override void OnModelUpdating(ModelBuilder modelBuilder)
         //{

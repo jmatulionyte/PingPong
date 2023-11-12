@@ -8,6 +8,7 @@ namespace PingPongAPI.Repository
 {
 	public class SetMatchWins : IBeforeSaveTrigger<Match>
     {
+        //after match results were added, trigger happens - winners is added to Winner column
         public Task BeforeSave(ITriggerContext<Match> context, CancellationToken cancellationToken)
         {
             if (context.ChangeType == ChangeType.Modified && context.Entity.Winner == "")

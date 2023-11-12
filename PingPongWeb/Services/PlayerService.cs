@@ -81,7 +81,17 @@ namespace PingPongWeb.Services
             return new List<string>();
         }
 
-        public Task<T> UpdateAsync<T>(PlayerUpdateDTO dto, string token)
+        public Task<T> UpdatePositionsWinsAsync<T>()
+        {
+            return SendAsync<T>(new APIRequest()
+            {
+                ApiType = SpecialDetails.ApiType.PUT,
+                Url = pingPongUrl + "/api/playerAPI"
+
+            });
+        }
+
+        public Task<T> UpdatePlayerAsync<T>(PlayerUpdateDTO dto, string token)
         {
             return SendAsync<T>(new APIRequest()
             {

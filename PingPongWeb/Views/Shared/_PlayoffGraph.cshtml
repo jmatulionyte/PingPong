@@ -1,0 +1,183 @@
+﻿
+@model PlayoffGraphViewModel
+
+<head>
+    <link rel="stylesheet" href="~/css/tournamentBrackets.css" />
+</head>
+<body>
+    <div class="container" style="font-size: 12px">
+        <br />
+        <br />
+        <div>
+            <div>
+                <h5 class="text-primary">Play-offs Graph</h5>
+            </div>
+
+            <main id="tournament">
+                @if (Model.PlayoffMatchesForGraph.Count() != 0)
+                {
+                    <ul class="round round1">
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[1]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer_half";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[4]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer_half";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[3]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer_half";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[2]" view-data="ViewData" />
+                    </ul>
+                    <ul class="round round2">
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer_half";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[5]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer_half";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[8]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer_half";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[7]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer_half";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[6]" view-data="ViewData" />
+
+                        <li class="static_spacer_half">&nbsp;</li>
+                    </ul>
+                    <ul class="round round3">
+
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[9]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer_half";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[12]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer_half";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[11]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "static_spacer_half";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[10]" view-data="ViewData" />
+
+                    </ul>
+                    <ul class="round round4">
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "spacer";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[13]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "spacer";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[16]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "spacer";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[15]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "spacer";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[14]" view-data="ViewData" />
+
+                        <li class="spacer">&nbsp;</li>
+                    </ul>
+                    <ul class="round round5">
+                        @{ ViewData["SpacerType"] = "spacer";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[17]" view-data="ViewData" />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @{ ViewData["SpacerType"] = "spacer";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[18]" view-data="ViewData" />
+
+                        <li class="spacer">&nbsp;</li>
+                    </ul>
+                    <ul class="round round 6">
+                        @{ ViewData["SpacerType"] = "spacer";}
+                        <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[19]" view-data="ViewData" />
+
+                        <li class="spacer">&nbsp;</li>
+
+                    </ul>
+                    <ul class="round" style="width:180px">
+                        <li class="game game-top winner" style="padding-left: 5px">1st - @Model.PlayoffWinner</li>
+                    </ul>
+                }
+
+                <div>
+                    @if (Model.PlayoffMatchesForGraph.Count != 0)
+                    {
+
+                        <ul class="round" style="position:absolute;right:500px; bottom:60px">
+                            <br />
+                            @{ ViewData["SpacerType"] = "spacer";}
+                            <partial name="_PlayoffGraphRoundPartial" model="Model.PlayoffMatchesForGraph[20]" view-data="ViewData" />
+                            <li class="game game-top winner" style="padding-left: 5px; position: absolute; bottom:50px; right:-190px; width: 190px">3rd - @Model.Playoff3rdPlace</li>
+                        </ul>
+                    }
+                </div>
+            </main>
+            
+
+        </div>
+    </div>
+
+</body>
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+}

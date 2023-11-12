@@ -16,12 +16,14 @@ builder.Services.AddDistributedMemoryCache();
 //add dependency injection
 builder.Services.AddHttpClient<IPlayerService, PlayerService>();
 builder.Services.AddScoped<IPlayerService, PlayerService>();
-builder.Services.AddHttpClient<IMatchService, MatchService>();
-builder.Services.AddScoped<IMatchService, MatchService>();
+builder.Services.AddHttpClient<IGroupMatchService, MatchService>();
+builder.Services.AddScoped<IGroupMatchService, MatchService>();
 builder.Services.AddScoped<IDashboard, Dashboard>();
 builder.Services.AddHttpClient<IAuthService, AuthService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserDataService, UserDataService>();
+builder.Services.AddScoped<ITournamentService, TournamentService>();
+builder.Services.AddScoped<IPlayoffGraphService, PlayoffGraphService>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

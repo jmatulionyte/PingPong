@@ -7,8 +7,8 @@ namespace PingPongWeb.Models
 	{
         public GroupViewModel groupViewModel;
         public GroupMatchViewModel groupMatchViewModel;
-        public PlayoffMatchViewModel playoffMatchViewModel;
-        public PlayoffGraphView playoffGraphView;
+        public PlayoffGraphViewModel playoffGraphViewModel;
+        public bool tournamentStarted = false;
     }
 }
 

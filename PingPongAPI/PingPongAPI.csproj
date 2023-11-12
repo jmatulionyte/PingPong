@@ -35,6 +35,8 @@
     <None Remove="Repository\IRepository\" />
     <None Remove="Models\Dto\" />
     <None Remove="Repository\Triggers\" />
+    <None Remove="Repository\Triggers\AfterTournamentSave\" />
+    <None Remove="Repository\Triggers\BeforeMatchSave\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -43,6 +45,8 @@
     <Folder Include="Repository\IRepository\" />
     <Folder Include="Models\Dto\" />
     <Folder Include="Repository\Triggers\" />
+    <Folder Include="Repository\Triggers\AfterTournamentSave\" />
+    <Folder Include="Repository\Triggers\BeforeMatchSave\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utility\Utility.csproj">

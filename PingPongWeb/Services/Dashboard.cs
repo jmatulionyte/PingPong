@@ -9,28 +9,30 @@ namespace PingPongWeb.Services
     public class Dashboard : IDashboard
     {
         private readonly IPlayerService _playerService;
-        private readonly IMatchService _matchService;
+        private readonly IGroupMatchService _matchService;
+        private readonly IPlayoffGraphService _playoffGraphService;
+        private readonly ITournamentService _tournamentService;
 
-        public Dashboard(IPlayerService playerService, IMatchService matchService)
+
+        public Dashboard(IPlayerService playerService, IGroupMatchService matchService, IPlayoffGraphService playoffGraphService, ITournamentService tournamentService)
         {
             _playerService = playerService;
             _matchService = matchService;
+            _playoffGraphService = playoffGraphService;
+            _tournamentService = tournamentService;
         }
 
-
-
-        public async Task<GroupViewModel> CreateGroupViewModel() //TODO create helper function to avoid duplication
+        public async Task<GroupViewModel> CreateGroupViewModel()
         {
             List<string> groupA = await _playerService.GetSpecificGroupPlayers("A");
             List<string> groupB = await _playerService.GetSpecificGroupPlayers("B");
             List<string> groupC = await _playerService.GetSpecificGroupPlayers("C");
-            GroupViewModel groupViewModel = new()
+            return new GroupViewModel()
             {
-                groupA = groupA,
-                groupB = groupB,
-                groupC = groupC
+                GroupA = groupA,
+                GroupB = groupB,
+                GroupC = groupC
             };
-            return groupViewModel;
         }
 
         public async Task<GroupMatchViewModel> CreateGroupMatchesViewModel()
@@ -38,65 +40,57 @@ namespace PingPongWeb.Services
             List<MatchDTO> groupA = await _matchService.GetSpecificGroupMatches("A");
             List<MatchDTO> groupB = await _matchService.GetSpecificGroupMatches("B");
             List<MatchDTO> groupC = await _matchService.GetSpecificGroupMatches("C");
-            GroupMatchViewModel groupMatchViewModel = new()
+            return new GroupMatchViewModel ()
             {
-                groupA = groupA,
-                groupB = groupB,
-                groupC = groupC
+                GroupA = groupA,
+                GroupB = groupB,
+                GroupC = groupC
             };
-            return groupMatchViewModel;
         }
 
-        public async Task<GroupMatchViewModel> CreatePlayoffMatchesViewModel()
-        {
-            List<MatchDTO> groupA = await _matchService.GetSpecificGroupMatches("A");
-            List<MatchDTO> groupB = await _matchService.GetSpecificGroupMatches("B");
-            List<MatchDTO> groupC = await _matchService.GetSpecificGroupMatches("C");
+        //public async Task<GroupMatchViewModel> CreatePlayoffMatchesViewModel()
+        //{
+        //    List<MatchDTO> groupA = await _matchService.GetSpecificGroupMatches("A");
+        //    List<MatchDTO> groupB = await _matchService.GetSpecificGroupMatches("B");
+        //    List<MatchDTO> groupC = await _matchService.GetSpecificGroupMatches("C");
 
-            //add all to groupView model
-            GroupMatchViewModel groupMatchViewModel = new()
+        //    //add all to groupView model
+        //    GroupMatchViewModel groupMatchViewModel = new()
+        //    {
+        //        GroupA = groupA,
+        //        GroupB = groupB,
+        //        GroupC = groupC
+        //    };
+        //    return groupMatchViewModel;
+        //}
+
+        public Task UpdateTournamentStatus()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<PlayoffGraphViewModel> CreatePlayoffGraphViewModel()
+        {
+            Dictionary<int, MatchDTO> playoffMatchesForGraph = await _playoffGraphService.ConvertPlayoffMatchesDataForGraph();
+
+            //get tournament status
+            bool tournamentStarted = await _tournamentService.CheckIfOngoingTournament();
+
+            //get playoff winer
+            string playoffWinner = await _playoffGraphService.GetPlayoffsWinner();
+
+            //get playoffs 3rd place winner
+            string playoff3rdPlace = await _playoffGraphService.GetPlayoffs3rdPlace();
+
+            return new PlayoffGraphViewModel()
             {
-                groupA = groupA,
-                groupB = groupB,
-                groupC = groupC
+                //assign data to playoffsGraphData interface
+                PlayoffMatchesForGraph = playoffMatchesForGraph,
+                TournamentStarted = tournamentStarted,
+                PlayoffWinner = playoffWinner,
+                Playoff3rdPlace = playoff3rdPlace
             };
-            return groupMatchViewModel;
         }
-
-        public void CreateOrUpdateMatchesForPlayoffs()
-        {
-            bool playoffMatchesAlreadyInDB = checkIf20PlayoffMatchesCreatedInDB();
-
-            foreach (var match in playoffMatchesTemplate)
-            {
-                int matchNumber = int.Parse(match[0]); //get match number e.g. 1
-                string player1FullName = ValidatePlayersNameForPlayoffs(match[1]);
-                string player2FullName = ValidatePlayersNameForPlayoffs(match[2]);
-                Match matchesObj = new(player1FullName, player2FullName, matchNumber, "Playoff");
-                if (!playoffMatchesAlreadyInDB)
-                {
-                    _db.Matches.Add(matchesObj);
-                }
-                else
-                {
-                    Match specificMatch = _db.Matches.ToList().Where(x => x.MatchNr == matchNumber).Single();
-                    specificMatch.Player1 = player1FullName;
-                    specificMatch.Player2 = player2FullName;
-                    _db.Matches.Update(specificMatch);
-                }
-            }
-            _db.SaveChanges();
-
-
-            /// <summary>
-            /// Checks if 20 playoff matches is already added to Matches DB
-            /// </summary>
-            public bool checkIf20PlayoffMatchesCreatedInDB()
-            {
-                var matchesObj = _db.Matches.ToList();
-                bool playoffMatchesAlreadyInDB = matchesObj.Where(x => x.MatchType == "Playoff").Count() == 20;
-                return playoffMatchesAlreadyInDB;
-            }
-        }
+    }
 }
 

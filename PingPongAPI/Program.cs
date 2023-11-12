@@ -22,7 +22,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
     option.UseSqlServer(connectionString);
     option.UseTriggers(triggerOptions => {
         triggerOptions.AddTrigger<SetMatchWins>();
-        triggerOptions.AddTrigger<SetPlayersGroupWinsPositions>();
+        //triggerOptions.AddTrigger<SetPlayersGroupWinsPositions>();
+        triggerOptions.AddTrigger<CreateGroupMatches>();
+        triggerOptions.AddTrigger<DeleteAllMatches>();
+        triggerOptions.AddTrigger<DeleteGroupPositionsWins>();
+        //triggerOptions.AddTrigger<UpdatePlayoffMatches>();
     });
 });
 
@@ -105,6 +109,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 builder.Services.AddScoped<IMatchRepository, MatchRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITournamentRepository, TournamentRepository>();
+
 
 
 //mapper for model-dto mapping

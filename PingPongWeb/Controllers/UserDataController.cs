@@ -21,16 +21,19 @@ namespace PingPongWeb.Controllers;
 public class UserDataController : Controller
 {
     private readonly IAuthService _authService;
-    private readonly IMatchService _matchService;
+    private readonly IPlayerService _playerService;
+    private readonly IGroupMatchService _matchService;
     private readonly IUserDataService _userDataService;
     private readonly IMapper _mapper;
 
-    public UserDataController(IAuthService authService, IUserDataService userDataService, IMatchService matchService, IMapper mapper)
+    public UserDataController(IAuthService authService, IUserDataService userDataService, IGroupMatchService matchService,
+        IMapper mapper, IPlayerService playerService)
     {
         _authService = authService;
         _userDataService = userDataService;
         _matchService = matchService;
         _mapper = mapper;
+        _playerService = playerService;
     }
 
     [HttpGet]
@@ -39,6 +42,8 @@ public class UserDataController : Controller
     {
         string fullName = "";
         string userId = HttpContext.Session.GetString("Id");
+
+        //string role = HttpContext.Session.GetString("Role");
         var response = await _authService.GetUserData<APIResponse>(userId);
         if (response != null && response.IsSuccess)
         {
@@ -69,8 +74,14 @@ public class UserDataController : Controller
     public async Task<IActionResult> Update(MatchUpdateDTO model)
     {
         if (ModelState.IsValid)
-        {//get villa by id, desiarialize to villaDTO model and then update it
-            var response = await _matchService.UpdateAsync<APIResponse>(model, HttpContext.Session.GetString(SpecialDetails.SessionToken));
+        {
+            if (model.ResultPlayer1 == model.ResultPlayer2) //DOES NOT WORK FOR SOME REASON
+            {
+                ModelState.AddModelError("CustomError", "Player 1 Result cannot match Player 2 Result");
+                return View(model);
+            }
+
+            var response = await _matchService.UpdateAsync<APIResponse>(model);
             if (response != null && response.IsSuccess)
             {
                 return RedirectToAction("Index");

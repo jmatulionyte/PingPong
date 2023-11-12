@@ -24,6 +24,8 @@ namespace PingPongWeb.Models.Dto
         public string MatchType { get; set; }
 
         public int PlayoffMatchNr { get; set; } = 0;
+
+        public string Winner { get; set; }
     }
 }
 

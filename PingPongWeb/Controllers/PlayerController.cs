@@ -6,8 +6,6 @@ using PingPongWeb.Services.IServices;
 using PingPongWeb.Models.Dto;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
-using System.Reflection;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Utility;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -64,7 +62,7 @@ namespace PingPongWeb.Controllers
         {
             if (ModelState.IsValid)
             {//get villa by id, desiarialize to villaDTO model and then update it
-                var response = await _playerService.UpdateAsync<APIResponse>(model, HttpContext.Session.GetString(SpecialDetails.SessionToken));
+                var response = await _playerService.UpdatePlayerAsync<APIResponse>(model, HttpContext.Session.GetString(SpecialDetails.SessionToken));
                 if (response != null && response.IsSuccess)
                 {
                     return RedirectToAction("Index");

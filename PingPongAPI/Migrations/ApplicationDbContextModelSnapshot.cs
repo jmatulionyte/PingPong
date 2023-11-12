@@ -46,7 +46,10 @@ namespace PingPongAPI.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("AspNetRoles", null, t =>
+                        {
+                            t.HasTrigger("AspNetRoles_Trigger");
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -71,7 +74,10 @@ namespace PingPongAPI.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("AspNetRoleClaims", null, t =>
+                        {
+                            t.HasTrigger("AspNetRoleClaims_Trigger");
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -96,7 +102,10 @@ namespace PingPongAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("AspNetUserClaims", null, t =>
+                        {
+                            t.HasTrigger("AspNetUserClaims_Trigger");
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -118,7 +127,10 @@ namespace PingPongAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("AspNetUserLogins", null, t =>
+                        {
+                            t.HasTrigger("AspNetUserLogins_Trigger");
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -133,7 +145,10 @@ namespace PingPongAPI.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("AspNetUserRoles", null, t =>
+                        {
+                            t.HasTrigger("AspNetUserRoles_Trigger");
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -152,7 +167,10 @@ namespace PingPongAPI.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("AspNetUserTokens", null, t =>
+                        {
+                            t.HasTrigger("AspNetUserTokens_Trigger");
+                        });
                 });
 
             modelBuilder.Entity("PingPongAPI.Models.ApplicationUser", b =>
@@ -223,7 +241,10 @@ namespace PingPongAPI.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("AspNetUsers", null, t =>
+                        {
+                            t.HasTrigger("AspNetUsers_Trigger");
+                        });
                 });
 
             modelBuilder.Entity("PingPongAPI.Models.Match", b =>
@@ -262,7 +283,10 @@ namespace PingPongAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Matches");
+                    b.ToTable("Matches", t =>
+                        {
+                            t.HasTrigger("Matches_Trigger");
+                        });
                 });
 
             modelBuilder.Entity("PingPongAPI.Models.Player", b =>
@@ -298,7 +322,32 @@ namespace PingPongAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Players");
+                    b.ToTable("Players", t =>
+                        {
+                            t.HasTrigger("Players_Trigger");
+                        });
+                });
+
+            modelBuilder.Entity("PingPongAPI.Models.Tournament", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tournaments", t =>
+                        {
+                            t.HasTrigger("Tournaments_Trigger");
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -6,9 +6,9 @@ namespace PingPongWeb.Models
 {
 	public class GroupMatchViewModel
 	{
-        public List<MatchDTO> groupA { get; set; }
-        public List<MatchDTO> groupB { get; set; }
-        public List<MatchDTO> groupC { get; set; }
+        public List<MatchDTO> GroupA { get; set; }
+        public List<MatchDTO> GroupB { get; set; }
+        public List<MatchDTO> GroupC { get; set; }
     }
 }
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8YkEI06z26988RxZ6BrTE/d3X6r87OAk9ZjwH/DlLZ8=",
+  "Hash": "OMIZXQcO2LXVbrIf9+Nh63M9HogGP4tCRYa5GGloyu8=",
   "Source": "PingPongWeb",
   "BasePath": "_content/PingPongWeb",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/site.css"
+    },
+    {
+      "Identity": "/Users/bg0513/Documents/personal-project/FinalPingPong/PingPongWeb/wwwroot/css/tournamentBrackets.css",
+      "SourceId": "PingPongWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bg0513/Documents/personal-project/FinalPingPong/PingPongWeb/wwwroot/",
+      "BasePath": "_content/PingPongWeb",
+      "RelativePath": "css/tournamentBrackets.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/tournamentBrackets.css"
     },
     {
       "Identity": "/Users/bg0513/Documents/personal-project/FinalPingPong/PingPongWeb/wwwroot/favicon.ico",

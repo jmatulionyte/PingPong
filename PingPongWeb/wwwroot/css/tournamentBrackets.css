@@ -1,0 +1,95 @@
+﻿/*
+ *  Flex Layout Specifics
+*/
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+.round {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.static_spacer {
+    /*    background-color: yellow;*/
+    vertical-align: middle;
+    height: 130px;
+}
+
+.static_spacer_half {
+    /*    background-color: red;*/
+    height: 70px;
+}
+
+.static_spacer,
+.spacer {
+    padding-top: 30%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.static_spacer_half {
+    padding: 15%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.spacer {
+    /*    background-color: blue;*/
+    vertical-align: middle;
+    height: 90px;
+}
+
+.round .spacer {
+    flex-grow: 1;
+}
+
+    .round .spacer:first-child,
+    .round .spacer:last-child {
+        flex-grow: 0.5;
+    }
+
+.game-spacer {
+    /*    background-color: green;*/
+}
+
+.round .game-spacer {
+    flex-grow: 2;
+}
+
+li.game {
+    /*    padding-left: 20px;*/
+}
+
+    li.game.winner {
+        font-weight: bold;
+    }
+
+    li.game span {
+        float: right;
+        margin-right: 5px;
+    }
+
+li.game-top {
+    border-bottom: 1px solid #aaa;
+}
+
+li.game-spacer {
+    border-right: 1px solid #aaa;
+    height: 70px;
+    width: 170px;
+}
+
+li.game-bottom {
+    border-top: 1px solid #aaa;
+}
+
+.matchName {
+/*    color: black;
+}*/

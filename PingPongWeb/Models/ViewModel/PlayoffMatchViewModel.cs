@@ -6,7 +6,7 @@ namespace PingPongWeb.Models
 {
 	public class PlayoffMatchViewModel
 	{
-        public List<MatchDTO> playoffMatches { get; set; }
+        public List<MatchDTO> PlayoffMatches { get; set; }
 
     }
 }

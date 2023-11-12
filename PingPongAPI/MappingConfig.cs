@@ -18,7 +18,11 @@ namespace PingPongAPI
             CreateMap<Match, MatchCreateDTO>().ReverseMap();
 
             CreateMap<ApplicationUser, UserDTO>().ReverseMap();
+
+            CreateMap<Tournament, TournamentDTO>().ReverseMap();
+            CreateMap<Tournament, TournamentUpdateDTO>().ReverseMap();
+
         }
-	}
+    }
 }
 

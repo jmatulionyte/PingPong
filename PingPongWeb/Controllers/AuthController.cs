@@ -57,6 +57,7 @@ public class AuthController : Controller
             //set key/ValueTask for session
             HttpContext.Session.SetString(SpecialDetails.SessionToken, model.Token);
             HttpContext.Session.SetString("Id", model.User.ID);
+            //HttpContext.Session.SetString("Role", model.User.ID);
 
             return RedirectToAction("Index", "Player");
         }

@@ -183,7 +183,7 @@ public class PlayerAPIController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "admin")]
-    public async Task<ActionResult<APIResponse>> UpdatePlayers([FromBody] PlayerUpdateDTO? updateDTO)
+    public async Task<ActionResult<APIResponse>> UpdatePlayers([FromBody] PlayerUpdateDTO updateDTO)
     {
         try
         {
